@@ -64,6 +64,14 @@ const useStyles = makeStyles({
 });
 
 function Main() {
+
+  function handleChange(page) {
+    console.log();
+    window.history.pushState(page, 'Title', `${page}`);
+    const navEvent = new PopStateEvent('popstate');
+    window.dispatchEvent(navEvent);
+  }
+
   const classes = useStyles();
   return (
     <div className="App" style={{backgroundColor: '#E5E5E5', height: '100vh'}}>
@@ -80,7 +88,7 @@ function Main() {
           Для удобства мы разнесли «главные тексты» по 4 условным категориям. Сразу хотим предупредить, что категории это не обособленные: частенько можно встретить работы, которые вбирают в себя признаки сразу нескольких типов.
         </Typography>
       </CardContent>
-      <Button className={classes.bntText}>Авторизоваться</Button>
+      <Button onClick={()=>handleChange('/auth')} className={classes.bntText}>Авторизоваться</Button>
     </Card>
     </div>
   );

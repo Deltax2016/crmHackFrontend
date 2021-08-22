@@ -51,6 +51,13 @@ const useStyles = makeStyles({
 function SignIn() {
   const classes = useStyles();
 
+  function handleChange(page) {
+    console.log();
+    window.history.pushState(page, 'Title', `${page}`);
+    const navEvent = new PopStateEvent('popstate');
+    window.dispatchEvent(navEvent);
+  }
+
   return (
     <div className="App" style={{backgroundColor: '#E5E5E5', height: '100vh'}}>
       
@@ -67,7 +74,7 @@ function SignIn() {
         </Typography>
         <input className={classes.textArea} placeholder=" ***********" />
       </CardContent>
-      <Button className={classes.bntText}>Войти</Button>
+      <Button className={classes.bntText} onClick={()=>handleChange('/form')}>Войти</Button>
     </Card>
     </div>
   );

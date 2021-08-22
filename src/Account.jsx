@@ -12,6 +12,7 @@ import circle from './circle.png';
 import user from './user.png'
 import mySvg from './mySvg.svg';
 import carding from './Card.png';
+import AccountHub from './AccountHub.jsx';
 
 
 const useStyles = makeStyles({
@@ -42,16 +43,16 @@ const useStyles = makeStyles({
   pos: {
     fontSize: '16px',
     color: "#505D8B",
-    marginTop: '2vh',
+    marginTop: '1vh',
     marginLeft: '3vw',
     marginBottom: '1vh',
     fontStyle: 'normal',
   },
   pos2: {
-    fontSize: '24px',
+    fontSize: '20px',
     color: "#505D8B",
     fontStyle: 'bold',
-    marginTop: '4px',
+    marginTop: '8px',
     marginLeft: '3vw',
   },
   bntText: {
@@ -81,9 +82,9 @@ const useStyles = makeStyles({
   },
   card: {
     display: 'flex',
-    marginTop: '3vh',
+    marginTop: '2vh',
     width: '615px',
-    height: '104px',
+    height: '80px',
     alignItems: 'center',
     backgroundImage: `url(${carding})`,
     filter: 'drop-shadow(0px 6px 10px rgba(131, 131, 131, 0.25))',
@@ -132,26 +133,7 @@ function Account() {
             <Button className={classes.bntText}>Мои Лендинги</Button>
           </div>
         </div>
-      <CardContent className={classes.content} style={{marginLeft:'32vw', marginTop:'5vh'}}>
-        <Typography className={classes.title}>
-          Личный кабинет
-        </Typography>
-        <div className={classes.card}>
-          <div style={{marginLeft:'3vw'}}>
-            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="15" cy="15" r="10.5" stroke="#505D8B" stroke-width="9"/>
-            </svg>
-          </div>
-          <div>
-            <Typography className={classes.pos2}>
-              Генерация Визиток
-            </Typography>
-            <Typography className={classes.pos}>
-              импортировать готовый продукт можно через БД
-            </Typography>
-          </div>
-        </div>
-      </CardContent>
+      <AccountHub />
     </Card>
     </div>
   );
