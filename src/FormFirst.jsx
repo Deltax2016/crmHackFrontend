@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import circle from './circle.png';
 
 import mySvg from './mySvg.svg';
@@ -56,7 +57,7 @@ const useStyles = makeStyles({
     zIndex: 6,
     position: 'absolute',
     bottom: '20px',
-    marginLeft: '60vw'
+    right:'40px'
 
   },
   textArea: {
@@ -78,6 +79,14 @@ const useStyles = makeStyles({
 
 function FormFirst() {
   const classes = useStyles();
+
+  function handleChange(page) {
+    console.log();
+    window.history.pushState(page, 'Title', `${page}`);
+    const navEvent = new PopStateEvent('popstate');
+    window.dispatchEvent(navEvent);
+  }
+
   return (
     <div className="App" style={{backgroundColor: '#E5E5E5', height: '100vh'}}>
       <Background2 />
@@ -113,15 +122,15 @@ function FormFirst() {
           <Typography className={classes.pos}>
             Введите ваш возраст
           </Typography>
-          <input className={classes.textArea} placeholder=" 228" />
+          <input className={classes.textArea} placeholder=" 28" />
         </div>
       </CardContent>
-      <div className={classes.btn} >
+      <Button className={classes.btn} style={{width:'85px', height:'50'}} onClick={()=>handleChange('/form2')}>
         <svg width="85" height="50" viewBox="0 0 105 70" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M2 20C2 10.0589 10.0589 2 20 2H103V50C103 59.9411 94.9411 68 85 68H2V20Z" stroke="#505D8B" stroke-width="4"/>
           <path d="M82.4142 36.4142C83.1953 35.6332 83.1953 34.3668 82.4142 33.5858L69.6863 20.8579C68.9052 20.0768 67.6389 20.0768 66.8579 20.8579C66.0768 21.6389 66.0768 22.9052 66.8579 23.6863L78.1716 35L66.8579 46.3137C66.0768 47.0948 66.0768 48.3611 66.8579 49.1421C67.6389 49.9232 68.9052 49.9232 69.6863 49.1421L82.4142 36.4142ZM24 37L81 37V33L24 33V37Z" fill="#505D8B"/>
         </svg>
-      </div>
+      </Button>
       <div className={classes.image}>
         <svg width="234" height="305" viewBox="0 0 234 305" fill="none" xmlns="http://www.w3.org/2000/svg">
           <ellipse cx="159.599" cy="201.074" rx="25" ry="25.6336" transform="rotate(-158.321 159.599 201.074)" fill="#505D8B"/>

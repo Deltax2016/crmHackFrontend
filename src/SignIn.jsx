@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react';
 import {Background} from './Background.jsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -7,6 +8,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import AuthPic from './AuthPic.jsx';
 import mySvg from './mySvg.svg';
+import { useMutation } from "@apollo/client";
+import { CreateUser } from './graph';
 
 const useStyles = makeStyles({
   root: {
@@ -50,12 +53,23 @@ const useStyles = makeStyles({
 
 function SignIn() {
   const classes = useStyles();
+  const [email, setEmail] = React.useState('user@gmail.com');
+
+  const [createUser, { data, loading, error }] = useMutation(CreateUser);
+
+  if (loading) return 'Submitting...';
+  if (error) return `Submission error! ${error.message}`;
 
   function handleChange(page) {
-    console.log();
+    createUser({ variables: { email: email} });
+    console.log(data);
     window.history.pushState(page, 'Title', `${page}`);
     const navEvent = new PopStateEvent('popstate');
     window.dispatchEvent(navEvent);
+  }
+
+  function handleEmail(event) {
+    setEmail({value: event.target.value});
   }
 
   return (
@@ -68,7 +82,7 @@ function SignIn() {
         <Typography className={classes.pos}>
           Email
         </Typography>
-        <input className={classes.textArea} placeholder=" info@gmail.com" />
+        <input className={classes.textArea} placeholder=" info@gmail.com" onChange={handleEmail}/>
         <Typography className={classes.pos}>
           Password
         </Typography>
