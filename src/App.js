@@ -11,16 +11,31 @@ import Social from './Social.jsx';
 import Account from './Account.jsx';
 import PostFirst from './PostFirst.jsx'
 import mySvg from './mySvg.svg';
+import PostInfo from './PostInfo.jsx';
 import Route from './Route.jsx';
 
 import { useQuery } from "@apollo/client";
 
 function App() {
+  const [text, setText] = React.useState('text');
   const { loading, error, data, refetch, networkStatus } = useQuery(User, {
     variables: { id: "61210499a89723000974f497" },
     notifyOnNetworkStatusChange: true,
     fetchPolicy:"cache-and-network"
   });
+
+  function handleChange(page) {
+    console.log(data);
+    window.history.pushState(page, 'Title', `${page}`);
+    const navEvent = new PopStateEvent('popstate');
+    window.dispatchEvent(navEvent);
+  }
+
+  function openPost(text) {
+    console.log(text);
+    setText(text);
+    handleChange('/full');
+  }
 
   console.log(window.location.search);
 
@@ -61,7 +76,10 @@ function App() {
         <Account />
       </Route>
       <Route path="/post">
-        <PostFirst />
+        <PostFirst openPost={openPost}/>
+      </Route>
+      <Route path="/full">
+        <PostInfo text={text}/>
       </Route>
     </div>
   );
