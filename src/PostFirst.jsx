@@ -43,7 +43,9 @@ function SocialCircle(props) {
 }
 
 
-function PostFlex() {
+function PostFlex(props) {
+  var {data} = props;
+  if (Object.keys(data).length === 0) data = {text1:'a', text2:'b', text3:'c'};
   const classes = useStyles();
   return(
   <div style={{display: 'flex'}}>
@@ -54,11 +56,8 @@ function PostFlex() {
         </svg>
       </div>
       <div>
-        <Typography className={classes.pos2}>
-          Тут заголовок
-        </Typography>
         <Typography className={classes.pos} style={{maxWidth:'300px'}}>
-          Тут текст
+          {data.text1.slice(0,16)}
         </Typography>
       </div>
     </div>
@@ -69,11 +68,8 @@ function PostFlex() {
         </svg>
       </div>
       <div>
-        <Typography className={classes.pos2}>
-          Тут заголовок2
-        </Typography>
         <Typography className={classes.pos} style={{maxWidth:'300px'}}>
-          Тут текст
+          {data.text2.slice(0,16)}
         </Typography>
       </div>
     </div>
@@ -84,11 +80,8 @@ function PostFlex() {
         </svg>
       </div>
       <div>
-        <Typography className={classes.pos2}>
-          Тут заголовок3
-        </Typography>
         <Typography className={classes.pos} style={{maxWidth:'300px'}}>
-          Тут текст
+          {data.text3.slice(0,16)}
         </Typography>
       </div>
     </div>
@@ -181,13 +174,15 @@ const useStyles = makeStyles({
 
 function PostFirst() {
   const classes = useStyles();
+  const [textData, setTextData] = React.useState({});
 
   React.useEffect(() => {
     // GET request using fetch inside useEffect React hook
     fetch('https://da32-178-154-224-187.ngrok.io/text/')
         .then(response => response.json())
-        .then(data => console.log(data));
+        .then(data => {console.log(data); setTextData(data);})
     }, []);
+
 
   return (
     <div className="App" style={{backgroundColor: '#E5E5E5', height: '100vh'}}>
@@ -251,7 +246,7 @@ function PostFirst() {
             </Typography>
           </div>
         </div>
-        <PostFlex />
+        <PostFlex data={textData} />
         <svg style={{marginTop: '40px'}} width="246" height="28" viewBox="0 0 246 28" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="246" height="28" fill="url(#pattern0)" fill-opacity="0.15"/>
           <defs>

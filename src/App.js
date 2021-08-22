@@ -22,6 +22,8 @@ function App() {
     fetchPolicy:"cache-and-network"
   });
 
+  console.log(window.location.search);
+
   React.useEffect(() => {
     if (error) console.error(error);
     if (loading) return(<div>Loading...</div>);
