@@ -7,6 +7,7 @@ import FormFirst from './FormFirst.jsx';
 import FormSecond from './FormSecond.jsx';
 import FormThird from './FormThird.jsx';
 import Social from './Social.jsx';
+import Account from './Account.jsx';
 import mySvg from './mySvg.svg';
 import Route from './Route.jsx';
 
@@ -38,6 +39,9 @@ function App() {
       </Route>
       <Route path="/social">
         <Social />
+      </Route>
+      <Route path="/account">
+        <Account />
       </Route>
     </div>
   );
