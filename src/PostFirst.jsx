@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react';
 import {Background2} from './Background2.jsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -180,6 +181,13 @@ const useStyles = makeStyles({
 
 function PostFirst() {
   const classes = useStyles();
+
+  React.useEffect(() => {
+    // GET request using fetch inside useEffect React hook
+    fetch('https://da32-178-154-224-187.ngrok.io/text/')
+        .then(response => response.json())
+        .then(data => console.log(data));
+    }, []);
 
   return (
     <div className="App" style={{backgroundColor: '#E5E5E5', height: '100vh'}}>
