@@ -13,35 +13,6 @@ import circle from './circle.png';
 import mySvg from './mySvg.svg';
 
 
-function Rect(props) {
-
-  const {color, checked, handleCheck, first} = props;
-
-  console.log(checked);
-
-  const checkStyle = {
-    normal: {
-      backgroundColor: 'white',
-      transform: 'scale(1)',
-    },
-    checked: {
-      transform: 'scale(0.9)',
-      boxShadow: '0 0 5px #333',
-    }
-  }
-
-
-  return(
-    <div onClick={()=>handleCheck(color)} style={first ? {display:'inline-block', marginRight: '8px',marginLeft: '110px'}:{display:'inline-block', marginRight: '8px'}}>
-      <label >
-        <svg style={(checked===color) ? checkStyle.checked : checkStyle.normal} width="82" height="59" viewBox="0 0 102 79" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="82" height="59" fill={color}/>
-        </svg>
-      </label>
-    </div>
-  );
-}
-
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -64,7 +35,7 @@ const useStyles = makeStyles({
     fontSize: '28px',
     color: "#000000",
     marginLeft: '5vw',
-    marginTop: '1vh',
+    marginTop: '2vh',
     fontStyle: 'normal',
     fontWeight: 'bold',
   },
@@ -103,7 +74,7 @@ const useStyles = makeStyles({
     borderRadius: 2,
     borderWidth: 0,
     width:'50vw',
-    height:'5vh',
+    height:'6vh',
     marginLeft: '6vw',
     marginTop: '2vh'
   },
@@ -115,15 +86,10 @@ const useStyles = makeStyles({
   },
 });
 
-function FormSecond() {
+function FormThird() {
 
-  const [checked, setChecked] = React.useState('');
   const classes = useStyles();
 
-  function handleCheck(color){
-    console.log('%c #######',  `color: ${color}`)
-    setChecked(color);
-  }
 
   return (
     <div className="App" style={{backgroundColor: '#E5E5E5', height: '100vh'}}>
@@ -134,48 +100,37 @@ function FormSecond() {
           <div style={{display:'flex'}}>
             <Typography className={classes.title}>
             <img src={circle} width='24px' height='24px' style={{marginRight: 20}} alt='circle'/>
-              Семейное положение
+              Хобби
             </Typography>
           </div>
           <Typography className={classes.pos}>
-            напр. Свободен, замужем, в отношениях, в разводе, итд.
+            Расскажите о своих увлечениях
           </Typography>
-          <input className={classes.textArea} placeholder=" Женат" />
+          <input className={classes.textArea} placeholder=" Beer-понг" />
         </div>
         <div style={{marginBottom:'1vh'}}>
           <div style={{display:'flex'}}>
             <Typography className={classes.title}>
             <img src={circle} width='24px' height='24px' style={{marginRight: 20}} alt='circle'/>
-              Профессия
+              Сильные стороны
             </Typography>
           </div>
           <Typography className={classes.pos}>
-            Ваша Профессия
+            Опишите ваши сильные стороны 
           </Typography>
-          <input className={classes.textArea} placeholder=" Программист" />
-          <Typography className={classes.pos}>
-            Ваша должность, обязанности
-          </Typography>
-          <input className={classes.textArea} placeholder=" Фуллстек" />
+          <input className={classes.textArea} placeholder=" Я гений" />
         </div>
-        <div>
+        <div style={{marginBottom:'1vh'}}>
           <div style={{display:'flex'}}>
             <Typography className={classes.title}>
             <img src={circle} width='24px' height='24px' style={{marginRight: 20}} alt='circle'/>
-              Ваш цвет
-            </Typography>
-            <Typography className={classes.pos2} style={{marginLeft: '20px'}}>
-              на основании выбранного цвета будет составлен Ваш личный дизайн-план
+              Слабые стороны
             </Typography>
           </div>
-          <div style={{display:'flex', marginTop: '10px'}}>
-            <Rect color='#505D8B' checked={checked} handleCheck={handleCheck} first={true} />
-            <Rect color='#FFCA42' checked={checked} handleCheck={handleCheck} first={false} />
-            <Rect color='#FF5757' checked={checked} handleCheck={handleCheck} first={false} />
-            <Rect color='#808080' checked={checked} handleCheck={handleCheck} first={false} />
-            <Rect color='#DBB7AF' checked={checked} handleCheck={handleCheck} first={false} />
-            <Rect color='#B57325' checked={checked} handleCheck={handleCheck} first={false} />
-          </div>
+          <Typography className={classes.pos}>
+            Опишите ваши слабые стороны 
+          </Typography>
+          <input className={classes.textArea} placeholder=" Их нет" />
         </div>
       </CardContent>
       <div className={classes.btn} >
@@ -200,4 +155,4 @@ function FormSecond() {
   );
 }
 
-export default FormSecond;
+export default FormThird;
